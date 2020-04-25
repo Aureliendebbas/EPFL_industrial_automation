@@ -44,6 +44,7 @@ __docformat__ = 'restructuredtext'
 
 import PyTango
 import sys
+import random
 # Add additional import
 #----- PROTECTED REGION ID(WeightTransmitter.additionnal_import) ENABLED START -----#
 
@@ -79,6 +80,7 @@ class WeightTransmitter (PyTango.Device_4Impl):
         self.debug_stream("In init_device()")
         self.get_device_properties(self.get_device_class())
         self.attr_weight_read = 0.0
+        self.attr_status_read = 0
         #----- PROTECTED REGION ID(WeightTransmitter.init_device) ENABLED START -----#
         
         #----- PROTECTED REGION END -----#	//	WeightTransmitter.init_device
@@ -95,10 +97,24 @@ class WeightTransmitter (PyTango.Device_4Impl):
     
     def read_weight(self, attr):
         self.debug_stream("In read_weight()")
+
+	self.attr_weight_read = random.random()*350
+        self.debug_stream("New weight reading: " + str(self.attr_weight_read))
+
         #----- PROTECTED REGION ID(WeightTransmitter.weight_read) ENABLED START -----#
         attr.set_value(self.attr_weight_read)
         
         #----- PROTECTED REGION END -----#	//	WeightTransmitter.weight_read
+        
+    def read_status(self, attr):
+        self.debug_stream("In read_status()")
+
+	self.attr_weight_read = random.randint(0,100)
+
+        #----- PROTECTED REGION ID(WeightTransmitter.status_read) ENABLED START -----#
+        attr.set_value(self.attr_status_read)
+        
+        #----- PROTECTED REGION END -----#	//	WeightTransmitter.status_read
         
     
     
@@ -145,6 +161,13 @@ class WeightTransmitterClass(PyTango.DeviceClass):
     attr_list = {
         'weight':
             [[PyTango.DevFloat,
+            PyTango.SCALAR,
+            PyTango.READ],
+            {
+                'Polling period': "1000",
+            } ],
+        'status':
+            [[PyTango.DevUShort,
             PyTango.SCALAR,
             PyTango.READ],
             {

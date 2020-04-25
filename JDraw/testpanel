@@ -1,0 +1,165 @@
+JDFile v11 {
+  Global {
+  }
+  JDLabel {
+    summit:140,226,195,247
+    origin:165,237
+    lineWidth:0
+    name:"Label"
+    text:"PT 101"
+  }
+  JDSwingObject {
+    summit:114,249,205,307
+    origin:148,257
+    fillStyle:1
+    lineWidth:0
+    name:"GR/tk1/PT101/pressure"
+    extensions:{
+      unitVisible:"true"
+      userFormat:""
+      alarmEnabled:"true"
+      validBackground:"0,255,0"
+      invalidText:"-----"
+    }
+    className:"fr.esrf.tangoatk.widget.attribute.SimpleScalarViewer"
+    font:"Dialog",0,12
+  }
+  JDLabel {
+    summit:279,223,334,244
+    origin:307,234
+    lineWidth:0
+    name:"Label"
+    text:"PT 201"
+  }
+  JDSwingObject {
+    summit:261,250,348,307
+    origin:295,258
+    fillStyle:1
+    lineWidth:0
+    name:"GR/tk2/PT201/pressure"
+    extensions:{
+      unitVisible:"true"
+      userFormat:""
+      alarmEnabled:"true"
+      validBackground:"0,255,0"
+      invalidText:"-----"
+    }
+    className:"fr.esrf.tangoatk.widget.attribute.SimpleScalarViewer"
+    font:"Dialog",0,12
+  }
+  JDLabel {
+    summit:132,358,192,379
+    origin:162,369
+    lineWidth:0
+    name:"Label"
+    text:"WT 101"
+  }
+  JDSwingObject {
+    summit:122,378,204,422
+    origin:156,386
+    fillStyle:1
+    lineWidth:0
+    name:"GR/tk1/WT101/weight"
+    extensions:{
+      unitVisible:"true"
+      userFormat:""
+      alarmEnabled:"true"
+      validBackground:"0,255,0"
+      invalidText:"-----"
+    }
+    className:"fr.esrf.tangoatk.widget.attribute.SimpleScalarViewer"
+    font:"Dialog",0,12
+  }
+  JDLabel {
+    summit:296,359,356,380
+    origin:326,370
+    lineWidth:0
+    name:"Label"
+    text:"WT 201"
+  }
+  JDSwingObject {
+    summit:280,381,373,427
+    origin:314,389
+    fillStyle:1
+    lineWidth:0
+    name:"GR/tk2/WT201/weight"
+    extensions:{
+      unitVisible:"true"
+      userFormat:""
+      alarmEnabled:"true"
+      validBackground:"0,255,0"
+      invalidText:"-----"
+    }
+    className:"fr.esrf.tangoatk.widget.attribute.SimpleScalarViewer"
+    font:"Dialog",0,12
+  }
+  JDLabel {
+    summit:642,171,697,192
+    origin:670,182
+    lineWidth:0
+    name:"Label"
+    text:"TT 301"
+  }
+  JDSwingObject {
+    summit:624,195,720,254
+    origin:658,203
+    fillStyle:1
+    lineWidth:0
+    name:"GR/mx/TT301/temperature"
+    extensions:{
+      unitVisible:"true"
+      userFormat:""
+      alarmEnabled:"true"
+      validBackground:"0,255,0"
+      invalidText:"-----"
+    }
+    className:"fr.esrf.tangoatk.widget.attribute.SimpleScalarViewer"
+    font:"Dialog",0,12
+  }
+  JDLabel {
+    summit:648,297,703,321
+    origin:676,311
+    lineWidth:0
+    name:"Label"
+    text:"PT 301"
+  }
+  JDSwingObject {
+    summit:625,324,731,377
+    origin:659,332
+    fillStyle:1
+    lineWidth:0
+    name:"GR/mx/PT301/pressure"
+    extensions:{
+      unitVisible:"true"
+      userFormat:""
+      alarmEnabled:"true"
+      validBackground:"0,255,0"
+      invalidText:"-----"
+    }
+    className:"fr.esrf.tangoatk.widget.attribute.SimpleScalarViewer"
+    font:"Dialog",0,12
+  }
+  JDLabel {
+    summit:657,401,711,422
+    origin:684,412
+    lineWidth:0
+    name:"Label"
+    text:"FT 301"
+  }
+  JDSwingObject {
+    summit:625,422,731,474
+    origin:659,430
+    fillStyle:1
+    lineWidth:0
+    name:"GR/mx/FT301/flowRate"
+    extensions:{
+      unitVisible:"true"
+      userFormat:""
+      alarmEnabled:"true"
+      validBackground:"0,255,0"
+      invalidText:"-----"
+    }
+    className:"fr.esrf.tangoatk.widget.attribute.SimpleScalarViewer"
+    font:"Dialog",0,12
+  }
+}
