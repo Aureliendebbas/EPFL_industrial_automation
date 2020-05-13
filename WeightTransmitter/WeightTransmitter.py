@@ -51,7 +51,11 @@ import random
 #----- PROTECTED REGION END -----#	//	WeightTransmitter.additionnal_import
 
 # Device States Description
-# No states for this device
+# FAULT : 
+# ALARM : 
+# RUNNING : 
+# UNKNOWN : 
+# STANDBY : 
 
 
 class WeightTransmitter (PyTango.Device_4Impl):
@@ -81,6 +85,7 @@ class WeightTransmitter (PyTango.Device_4Impl):
         self.get_device_properties(self.get_device_class())
         self.attr_weight_read = 0.0
         self.attr_status_v_read = 0
+        self.attr_trend_read = 0
         #----- PROTECTED REGION ID(WeightTransmitter.init_device) ENABLED START -----#
         
         #----- PROTECTED REGION END -----#	//	WeightTransmitter.init_device
@@ -97,7 +102,7 @@ class WeightTransmitter (PyTango.Device_4Impl):
     
     def read_weight(self, attr):
         self.debug_stream("In read_weight()")
-	self.attr_weight_read = random.random()*400
+	self.attr_weight_read = random.random()*360
         self.debug_stream("New weight reading: " + str(self.attr_weight_read))
         #----- PROTECTED REGION ID(WeightTransmitter.weight_read) ENABLED START -----#
         attr.set_value(self.attr_weight_read)
@@ -112,6 +117,15 @@ class WeightTransmitter (PyTango.Device_4Impl):
         attr.set_value(self.attr_status_v_read)
         
         #----- PROTECTED REGION END -----#	//	WeightTransmitter.status_v_read
+        
+    def read_trend(self, attr):
+        self.debug_stream("In read_trend()")
+	self.attr_trend_read = random.randint(0,2)
+        self.debug_stream("New trend reading: " + str(self.attr_trend_read))
+        #----- PROTECTED REGION ID(WeightTransmitter.trend_read) ENABLED START -----#
+        attr.set_value(self.attr_trend_read)
+        
+        #----- PROTECTED REGION END -----#	//	WeightTransmitter.trend_read
         
     
     
@@ -169,6 +183,13 @@ class WeightTransmitterClass(PyTango.DeviceClass):
             PyTango.READ],
             {
                 'Polling period': "1000",
+            } ],
+        'trend':
+            [[PyTango.DevUShort,
+            PyTango.SCALAR,
+            PyTango.READ],
+            {
+                'Polling period': "3000",
             } ],
         }
 

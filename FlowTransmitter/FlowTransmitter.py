@@ -81,6 +81,7 @@ class FlowTransmitter (PyTango.Device_4Impl):
         self.get_device_properties(self.get_device_class())
         self.attr_flowRate_read = 0.0
         self.attr_status_v_read = 0
+        self.attr_trend_read = 0
         #----- PROTECTED REGION ID(FlowTransmitter.init_device) ENABLED START -----#
         
         #----- PROTECTED REGION END -----#	//	FlowTransmitter.init_device
@@ -112,6 +113,15 @@ class FlowTransmitter (PyTango.Device_4Impl):
         attr.set_value(self.attr_status_v_read)
         
         #----- PROTECTED REGION END -----#	//	FlowTransmitter.status_v_read
+        
+    def read_trend(self, attr):
+        self.debug_stream("In read_trend()")
+	self.attr_trend_read = random.randint(0,2)
+        self.debug_stream("New trend reading: " + str(self.attr_trend_read))
+        #----- PROTECTED REGION ID(FlowTransmitter.trend_read) ENABLED START -----#
+        attr.set_value(self.attr_trend_read)
+        
+        #----- PROTECTED REGION END -----#	//	FlowTransmitter.trend_read
         
     
     
@@ -169,6 +179,13 @@ class FlowTransmitterClass(PyTango.DeviceClass):
             PyTango.READ],
             {
                 'Polling period': "1000",
+            } ],
+        'trend':
+            [[PyTango.DevUShort,
+            PyTango.SCALAR,
+            PyTango.READ],
+            {
+                'Polling period': "3000",
             } ],
         }
 

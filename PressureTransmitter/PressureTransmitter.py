@@ -81,6 +81,7 @@ class PressureTransmitter (PyTango.Device_4Impl):
         self.get_device_properties(self.get_device_class())
         self.attr_pressure_read = 0.0
         self.attr_status_v_read = 0
+        self.attr_trend_read = 0
         #----- PROTECTED REGION ID(PressureTransmitter.init_device) ENABLED START -----#
         
         #----- PROTECTED REGION END -----#	//	PressureTransmitter.init_device
@@ -112,6 +113,15 @@ class PressureTransmitter (PyTango.Device_4Impl):
         attr.set_value(self.attr_status_v_read)
         
         #----- PROTECTED REGION END -----#	//	PressureTransmitter.status_v_read
+        
+    def read_trend(self, attr):
+        self.debug_stream("In read_trend()")
+	self.attr_trend_read = random.randint(0,2)
+	self.debug_stream("New trend reading: " + str(self.attr_trend_read))
+        #----- PROTECTED REGION ID(PressureTransmitter.trend_read) ENABLED START -----#
+        attr.set_value(self.attr_trend_read)
+        
+        #----- PROTECTED REGION END -----#	//	PressureTransmitter.trend_read
         
     
     
@@ -169,6 +179,13 @@ class PressureTransmitterClass(PyTango.DeviceClass):
             PyTango.READ],
             {
                 'Polling period': "1000",
+            } ],
+        'trend':
+            [[PyTango.DevUShort,
+            PyTango.SCALAR,
+            PyTango.READ],
+            {
+                'Polling period': "3000",
             } ],
         }
 

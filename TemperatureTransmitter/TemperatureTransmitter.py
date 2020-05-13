@@ -81,6 +81,7 @@ class TemperatureTransmitter (PyTango.Device_4Impl):
         self.get_device_properties(self.get_device_class())
         self.attr_temperature_read = 0.0
         self.attr_status_v_read = 0
+        self.attr_trend_read = 0
         #----- PROTECTED REGION ID(TemperatureTransmitter.init_device) ENABLED START -----#
         
         #----- PROTECTED REGION END -----#	//	TemperatureTransmitter.init_device
@@ -112,6 +113,15 @@ class TemperatureTransmitter (PyTango.Device_4Impl):
         attr.set_value(self.attr_status_v_read)
         
         #----- PROTECTED REGION END -----#	//	TemperatureTransmitter.status_v_read
+        
+    def read_trend(self, attr):
+        self.debug_stream("In read_trend()")
+	self.attr_trend_read = random.randint(0,2)
+        self.debug_stream("New trend reading: " + str(self.attr_trend_read))
+        #----- PROTECTED REGION ID(TemperatureTransmitter.trend_read) ENABLED START -----#
+        attr.set_value(self.attr_trend_read)
+        
+        #----- PROTECTED REGION END -----#	//	TemperatureTransmitter.trend_read
         
     
     
@@ -169,6 +179,13 @@ class TemperatureTransmitterClass(PyTango.DeviceClass):
             PyTango.READ],
             {
                 'Polling period': "1000",
+            } ],
+        'trend':
+            [[PyTango.DevUShort,
+            PyTango.SCALAR,
+            PyTango.READ],
+            {
+                'Polling period': "3000",
             } ],
         }
 
