@@ -80,7 +80,7 @@ class TemperatureTransmitter (PyTango.Device_4Impl):
         self.debug_stream("In init_device()")
         self.get_device_properties(self.get_device_class())
         self.attr_temperature_read = 0.0
-        self.attr_status_read = 0
+        self.attr_status_v_read = 0
         #----- PROTECTED REGION ID(TemperatureTransmitter.init_device) ENABLED START -----#
         
         #----- PROTECTED REGION END -----#	//	TemperatureTransmitter.init_device
@@ -97,23 +97,21 @@ class TemperatureTransmitter (PyTango.Device_4Impl):
     
     def read_temperature(self, attr):
         self.debug_stream("In read_temperature()")
-
-	self.attr_temperature_read = random.random()*200
-
+	self.attr_temperature_read = random.random()*360
+        self.debug_stream("New temperature reading: " + str(self.attr_temperature_read))
         #----- PROTECTED REGION ID(TemperatureTransmitter.temperature_read) ENABLED START -----#
         attr.set_value(self.attr_temperature_read)
         
         #----- PROTECTED REGION END -----#	//	TemperatureTransmitter.temperature_read
         
-    def read_status(self, attr):
-        self.debug_stream("In read_status()")
-
-	self.attr_status_read = random.randint(0,100)
-
-        #----- PROTECTED REGION ID(TemperatureTransmitter.status_read) ENABLED START -----#
-        attr.set_value(self.attr_status_read)
+    def read_status_v(self, attr):
+        self.debug_stream("In read_status_v()")
+	self.attr_status_v_read = random.randint(0,100)
+        self.debug_stream("New status reading: " + str(self.attr_status_v_read))
+        #----- PROTECTED REGION ID(TemperatureTransmitter.status_v_read) ENABLED START -----#
+        attr.set_value(self.attr_status_v_read)
         
-        #----- PROTECTED REGION END -----#	//	TemperatureTransmitter.status_read
+        #----- PROTECTED REGION END -----#	//	TemperatureTransmitter.status_v_read
         
     
     
@@ -165,7 +163,7 @@ class TemperatureTransmitterClass(PyTango.DeviceClass):
             {
                 'Polling period': "1000",
             } ],
-        'status':
+        'status_v':
             [[PyTango.DevUShort,
             PyTango.SCALAR,
             PyTango.READ],

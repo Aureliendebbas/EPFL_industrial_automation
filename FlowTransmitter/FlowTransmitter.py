@@ -80,7 +80,7 @@ class FlowTransmitter (PyTango.Device_4Impl):
         self.debug_stream("In init_device()")
         self.get_device_properties(self.get_device_class())
         self.attr_flowRate_read = 0.0
-        self.attr_status_read = 0
+        self.attr_status_v_read = 0
         #----- PROTECTED REGION ID(FlowTransmitter.init_device) ENABLED START -----#
         
         #----- PROTECTED REGION END -----#	//	FlowTransmitter.init_device
@@ -97,23 +97,21 @@ class FlowTransmitter (PyTango.Device_4Impl):
     
     def read_flowRate(self, attr):
         self.debug_stream("In read_flowRate()")
-
 	self.attr_flowRate_read = random.random()*150
-
+        self.debug_stream("New flow reading: " + str(self.attr_flowRate_read))
         #----- PROTECTED REGION ID(FlowTransmitter.flowRate_read) ENABLED START -----#
         attr.set_value(self.attr_flowRate_read)
         
         #----- PROTECTED REGION END -----#	//	FlowTransmitter.flowRate_read
         
-    def read_status(self, attr):
-        self.debug_stream("In read_status()")
-
-	self.attr_status_read = random.randint(0,100)
-
-        #----- PROTECTED REGION ID(FlowTransmitter.status_read) ENABLED START -----#
-        attr.set_value(self.attr_status_read)
+    def read_status_v(self, attr):
+        self.debug_stream("In read_status_v()")
+	self.attr_status_v_read = random.randint(0,100)
+        self.debug_stream("New status reading: " + str(self.attr_status_v_read))
+        #----- PROTECTED REGION ID(FlowTransmitter.status_v_read) ENABLED START -----#
+        attr.set_value(self.attr_status_v_read)
         
-        #----- PROTECTED REGION END -----#	//	FlowTransmitter.status_read
+        #----- PROTECTED REGION END -----#	//	FlowTransmitter.status_v_read
         
     
     
@@ -165,7 +163,7 @@ class FlowTransmitterClass(PyTango.DeviceClass):
             {
                 'Polling period': "1000",
             } ],
-        'status':
+        'status_v':
             [[PyTango.DevUShort,
             PyTango.SCALAR,
             PyTango.READ],

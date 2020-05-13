@@ -80,7 +80,7 @@ class WeightTransmitter (PyTango.Device_4Impl):
         self.debug_stream("In init_device()")
         self.get_device_properties(self.get_device_class())
         self.attr_weight_read = 0.0
-        self.attr_status_read = 0
+        self.attr_status_v_read = 0
         #----- PROTECTED REGION ID(WeightTransmitter.init_device) ENABLED START -----#
         
         #----- PROTECTED REGION END -----#	//	WeightTransmitter.init_device
@@ -97,24 +97,21 @@ class WeightTransmitter (PyTango.Device_4Impl):
     
     def read_weight(self, attr):
         self.debug_stream("In read_weight()")
-
-	self.attr_weight_read = random.random()*350
+	self.attr_weight_read = random.random()*400
         self.debug_stream("New weight reading: " + str(self.attr_weight_read))
-
         #----- PROTECTED REGION ID(WeightTransmitter.weight_read) ENABLED START -----#
         attr.set_value(self.attr_weight_read)
         
         #----- PROTECTED REGION END -----#	//	WeightTransmitter.weight_read
         
-    def read_status(self, attr):
-        self.debug_stream("In read_status()")
-
-	self.attr_weight_read = random.randint(0,100)
-
-        #----- PROTECTED REGION ID(WeightTransmitter.status_read) ENABLED START -----#
-        attr.set_value(self.attr_status_read)
+    def read_status_v(self, attr):
+        self.debug_stream("In read_status_v()")
+	self.attr_status_v_read = random.randint(0,100)
+        self.debug_stream("New status reading: " + str(self.attr_status_v_read))
+        #----- PROTECTED REGION ID(WeightTransmitter.status_v_read) ENABLED START -----#
+        attr.set_value(self.attr_status_v_read)
         
-        #----- PROTECTED REGION END -----#	//	WeightTransmitter.status_read
+        #----- PROTECTED REGION END -----#	//	WeightTransmitter.status_v_read
         
     
     
@@ -166,7 +163,7 @@ class WeightTransmitterClass(PyTango.DeviceClass):
             {
                 'Polling period': "1000",
             } ],
-        'status':
+        'status_v':
             [[PyTango.DevUShort,
             PyTango.SCALAR,
             PyTango.READ],
