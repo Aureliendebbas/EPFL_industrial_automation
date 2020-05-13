@@ -44,6 +44,7 @@ __docformat__ = 'restructuredtext'
 
 import PyTango
 import sys
+import random
 # Add additional import
 #----- PROTECTED REGION ID(PilotValve.additionnal_import) ENABLED START -----#
 
@@ -95,6 +96,15 @@ class PilotValve (PyTango.Device_4Impl):
     
     def read_valveOpen(self, attr):
         self.debug_stream("In read_valveOpen()")
+	i = random.randint(0,1)
+	if i==1:
+		self.attr_valveOpen_read = True
+	else:
+		self.attr_valveOpen_read = False
+	if self.attr_valveOpen_read:
+        	self.debug_stream("Valve is open")
+	else:
+        	self.debug_stream("Valve is closed")
         #----- PROTECTED REGION ID(PilotValve.valveOpen_read) ENABLED START -----#
         attr.set_value(self.attr_valveOpen_read)
         
@@ -146,7 +156,10 @@ class PilotValveClass(PyTango.DeviceClass):
         'valveOpen':
             [[PyTango.DevBoolean,
             PyTango.SCALAR,
-            PyTango.READ]],
+            PyTango.READ],
+            {
+                'Polling period': "3000",
+            } ],
         }
 
 
